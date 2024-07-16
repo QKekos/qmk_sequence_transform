@@ -102,9 +102,9 @@ def map_ascii(symbols: str) -> dict[str, int]:
 ###############################################################################
 def generate_sequence_symbol_map(seq_tokens, wordbreak_symbol) -> Dict[str, int]:
     return {
+        **{chr(c): c for c in range(32, 126)},
         **map_range(TRIECODE_SEQUENCE_TOKEN_0, seq_tokens),
         wordbreak_symbol: ord(" "),  # "Word break" symbol.
-        **{chr(c): c for c in range(32, 126)}
     }
 
 

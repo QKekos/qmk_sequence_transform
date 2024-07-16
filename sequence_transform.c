@@ -523,3 +523,16 @@ void post_process_sequence_transform()
     }
 #endif
 }
+
+bool st_will_perform(uint16_t *keycodes, uint16_t sequence_token_start) {
+    int i = 0;
+    for (; keycodes[i] != KC_NO; i += 1) {
+        st_key_buffer_push(&key_buffer, st_keycode_to_triecode(keycodes[i], sequence_token_start));
+    }
+
+    st_trie_search_result_t res = {{0, {0,0,0}}, {0, 0, 0, 0}};
+    bool result = st_trie_get_completion(&trie_cursor, &res);
+
+    st_key_buffer_pop(&key_buffer, i);
+    return result;
+}
