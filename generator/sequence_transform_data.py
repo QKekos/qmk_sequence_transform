@@ -350,7 +350,7 @@ def parse_tokens(tokens: List[str], parse_regex: bool) -> Iterator[Tuple[int, st
 
     if parse_regex:
         for token, sequence in generate_matches(full_sequence):
-            yield sequence, transform.replace(r"\1", token)
+            yield sequence.replace(r"\1", token), transform.replace(r"\1", token)
     else:
         yield full_sequence, transform
 
