@@ -171,9 +171,6 @@ bool st_process_check(uint16_t *keycode,
                 return false;
             }
             *keycode = QK_MOD_TAP_GET_TAP_KEYCODE(*keycode);
-            if (*mods & MOD_MASK_SHIFT) {
-                *keycode |= QK_LSFT;
-            }
             break;
 #else
         case QK_MOD_TAP ... QK_MOD_TAP_MAX:
